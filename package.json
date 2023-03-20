@@ -1,0 +1,12 @@
+{
+  "name": "bursdag",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "serve": "http-server ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
