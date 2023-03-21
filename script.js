@@ -6,7 +6,8 @@
 // Otherwise the confetti constantly falls.
 var onlyOnKonami = false;
 
-$(function() {
+function run() {
+  $(function() {
   // Globals
   var $window = $(window)
     , random = Math.random
@@ -251,3 +252,6 @@ $(function() {
   
   if (!onlyOnKonami) poof();
 });
+}
+
+setInterval(() => run(), 1000)
