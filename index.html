@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Karl Marius bursdag</title>
+    <title>Din bursdag</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,27 +21,47 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script>
-      function playGrats() {
-        let audio = document.getElementById("audio");
-        audio.play();
-        document.getElementById("knapp").style.visibility = "hidden";
-      }
-    </script>
     <script src="script.js"></script>
     <link rel="stylesheet" href="index.css" />
   </head>
 
   <audio id="audio" src="sang.mp3"></audio>
   <body>
-    <div class="wrapper">
+    <div class="wrapper" id="wrapper">
       <input
         id="knapp"
         type="button"
         value="Klikk her 🥳"
         onclick="playGrats()"
       />
-      <h1>Gratulerer med dagen, Karl Marius!</h1>
     </div>
   </body>
+  <script>
+    const parseQueryString = (search) =>
+      (search || "")
+        .replace(/^\?/g, "")
+        .split("&")
+        .reduce((acc, query) => {
+          const [key, value] = query.split("=");
+
+          if (key) {
+            acc[key] = decodeURIComponent(value);
+          }
+
+          return acc;
+        }, {});
+    const search = parseQueryString(window.location.search);
+    let gratulasjon = "Gratulerer med dagen!";
+    if (search.navn) {
+      gratulasjon = `Gratulerer med dagen, ${search.navn}!`;
+    }
+    const gratulasjonsElement = document.createElement("h1");
+    gratulasjonsElement.innerText = gratulasjon;
+    document.getElementById("wrapper").appendChild(gratulasjonsElement);
+    function playGrats() {
+      let audio = document.getElementById("audio");
+      audio.play();
+      document.getElementById("knapp").style.visibility = "hidden";
+    }
+  </script>
 </html>
